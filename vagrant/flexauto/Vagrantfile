@@ -69,7 +69,7 @@ Vagrant.configure(2) do |config|
 	#sudo find . -name '.*' -prune -o -exec chown -R vagrant . {} +
 	sudo chown -R vagrant /home/vagrant
 
-	cp -r ~/Integration-Testing-Framework/site-packages ~/.Sikulix/Lib
+	cp -r ~/FwIntegrationTests/site-packages ~/.Sikulix/Lib
 	#### Vagrant User Configurations
 	####
 	sudo su vagrant << EOF

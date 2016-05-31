@@ -1,5 +1,3 @@
-deleted file mode 100644
-@@ -1,93 +0,0 @@
 import xmlrunner
 import sys
 import unittest
@@ -24,14 +22,23 @@ class FlexGeneralTests(unittest.TestCase):
                 self.myFolder = os.path.dirname(__file__)
 
     def setUp(self):
-        subprocess.call("sudo rm -Rf /home/vagrant/.local/share/fieldworks/Projects/*", shell=True)
-        App.open("fieldworks-flex")
+        if myOS == "L":
+            subprocess.call("sudo rm -Rf /home/vagrant/.local/share/fieldworks/Projects/*", shell=True)
+            App.open("fieldworks-flex")
+        elif myOS == "W":
+            subprocess.call("rd c:\ProgramData\SIL\FieldWorks\Projects\ /s /q", shell=True)
+            subprocess.call("mkdir c:\ProgramData\SIL\FieldWorks\Projects\ ", shell=True)
+            App.open("fieldworks")
+
+        print "before open"
         runScript("./helpers/1_open_flex")
         print ("\n"+time.strftime("%H:%M:%S %x") + " Running " + str.split(self.id(),".")[-1][5:] + "... \n")
 
     def tearDown(self):
-        App.close("mono")
-        #runScript("./helpers/zutalafin")
+        if myOS == "L":
+            App.close("mono")
+        elif myOS == "W":
+            App.close("fieldworks")
 
     @unittest.skip("manual keyboard changes needed")
     def test_checks(self):
@@ -40,6 +47,7 @@ class FlexGeneralTests(unittest.TestCase):
         output = self.run_sikuli_test(test_check_word_gloss)
         self.assertFalse(' --- ' in output)
 
+    @unittest.skip("path work needed")
     def test_compare_screenshots_from_backups(self):
         output = self.run_sikuli_test(self.id())
         self.assertFalse(' --- ' in output)
@@ -77,7 +85,7 @@ class FlexGeneralTests(unittest.TestCase):
         file = os.path.join(self.myFolder, the_test+".sikuli") # test location
         #subprocess.call([self.command, '-r', file])
         runScript(file)
-        for line in open("/vagrant/error_log"):
+        for line in open(error_file):
             last = line
         return line
 
