@@ -4,100 +4,69 @@ import unittest
 import subprocess
 import os
 import inspect
+import runpy
 from sikuli import *
 from test_helper import *
 
-class FlexGeneralTests(unittest.TestCase):
+class MyTests(unittest.TestCase):
 
-    @classmethod
-    def setUpClass(self):
-        if __name__ == '__main__':
-            self.myFolder = getParentFolder()
-        else:
-            if myOS == sikuli.OS.LINUX:
-                self.myFolder = os.path.dirname(__file__)
-            elif myOS == sikuli.OS.WINDOWS:
-                self.myFolder = os.path.dirname(os.path.dirname(__file__))
-            elif myOS == OS.MAC:
-                self.myFolder = os.path.dirname(__file__)
+    if __name__ == '__main__':
+        myFolder = getParentFolder()
+    else:
+        if myOS == "L":
+            myFolder = os.path.dirname(__file__)
+        elif myOS == "W":
+            myFolder = os.path.dirname(os.path.dirname(__file__))
+        elif myOS == "M":
+            myFolder = os.path.dirname(__file__)
 
     def setUp(self):
-        if myOS == "L":
-            subprocess.call("sudo rm -Rf /home/vagrant/.local/share/fieldworks/Projects/*", shell=True)
-            App.open("fieldworks-flex")
-        elif myOS == "W":
-            subprocess.call("rd c:\ProgramData\SIL\FieldWorks\Projects\ /s /q", shell=True)
-            subprocess.call("mkdir c:\ProgramData\SIL\FieldWorks\Projects\ ", shell=True)
-            App.open("fieldworks")
-
-        print "before open"
-        runScript("./helpers/1_open_flex")
-        print ("\n"+time.strftime("%H:%M:%S %x") + " Running " + str.split(self.id(),".")[-1][5:] + "... \n")
+        try:
+            runpy.run_path(os.path.join(MyTests.myFolder,"setUp.py"))
+        except IOError:
+            pass
 
     def tearDown(self):
-        if myOS == "L":
-            App.close("mono")
-        elif myOS == "W":
-            App.close("fieldworks")
-
-    @unittest.skip("manual keyboard changes needed")
-    def test_checks(self):
-        self.run_sikuli_test(test_check_keyboard_switching)
-        self.run_sikuli_test(test_check_suffix_formation)
-        output = self.run_sikuli_test(test_check_word_gloss)
-        self.assertFalse(' --- ' in output)
-
-    @unittest.skip("path work needed")
-    def test_compare_screenshots_from_backups(self):
-        output = self.run_sikuli_test(self.id())
-        self.assertFalse(' --- ' in output)
-
-    def test_create_lexicon_entry(self):
-        output = self.run_sikuli_test(self.id())
-        self.assertFalse(' --- ' in output)
-
-    def test_create_new_text(self):
-        output = self.run_sikuli_test(self.id())
-        self.assertFalse(' --- ' in output)
-
-    def test_create_notebook_entry(self):
-        output = self.run_sikuli_test(self.id())
-        self.assertFalse(' --- ' in output)
-
-    def test_dictionary_variant_forms(self):
-        output = self.run_sikuli_test(self.id())
-        self.assertFalse(' --- ' in output)
-
-    def test_drag_column(self):
-        output = self.run_sikuli_test(self.id())
-        self.assertFalse(' --- ' in output)
-
-    def test_help_about(self):
-        output = self.run_sikuli_test(self.id())
-        self.assertFalse(' --- ' in output)
-
-    def test_try_all_sidebar_buttons(self):
-        output = self.run_sikuli_test(self.id())
-        self.assertFalse(' --- ' in output)
+        try:
+            runpy.run_path(os.path.join(MyTests.myFolder,"tearDown.py"))
+        except IOError:
+            pass
 
     def run_sikuli_test(self,name):
         the_test = str.split(name,".")[-1][5:] # test name of the form '__main__.MyTests.test_name', split on periods, then remove the 'test_'
-        file = os.path.join(self.myFolder, the_test+".sikuli") # test location
-        #subprocess.call([self.command, '-r', file])
-        runScript(file)
-        for line in open(error_file):
-            last = line
-        return line
+        file = os.path.join(MyTests.myFolder, the_test+".sikuli") # test location
+        return_code = runScript(file)
+        if return_code != 0:
+            raise Exception('The Sikuli script did not exit cleanly.')
+        last = ""
+        if os.path.exists(error_file):
+            for line in open(error_file):
+                last = line
+            return last
+        else:
+            return ""
 
-def load_tests(*args, **kwargs):
-    print "Passed: ", args, kwargs
-    suite = unittest.TestSuite()
-    for name, obj in inspect.getmembers(sys.modules[__name__]):
-        if inspect.isclass(obj) and issubclass(obj,unittest.TestCase):
-            suite.addTests(unittest.TestLoader().loadTestsFromTestCase(obj))
-    return suite
+def make_method(name):
+    def my_method(self):
+        #print("method {0} in {1}".format(name, self))
+        output = self.run_sikuli_test(self.id())
+        self.assertFalse(' --- ' in output)
+    return my_method
+
+for folder in os.listdir(MyTests.myFolder):
+    name = folder[:-7]
+    if ".sikuli" == folder[-7:] and not "_" == folder[0] and not "#" == folder[0] :
+        _method = make_method(name)
+        setattr(MyTests, "test_"+name, _method)
 
 if __name__ == '__main__':
-    suite = unittest.TestLoader().loadTestsFromTestCase(FlexGeneralTests)
-    unittest.TextTestRunner(verbosity=2).run(suite)
-    #xmlrunner.XMLTestRunner(file("/vagrant/unittest.xml", "w")).run(suite)
+    suite = unittest.TestLoader().discover(".", pattern="*.py")
+    if myOS == "L":
+        suite.addTests(unittest.TestLoader().loadTestsFromTestCase(MyTests))
+    if len(sys.argv)<2 or sys.argv[1] == "text":
+        unittest.TextTestRunner(verbosity=2).run(suite)
+    elif sys.argv[1] == "xml":
+        with file(os.path.join(getParentFolder()+"unittest.xml"), "w") as f:
+            xmlrunner.XMLTestRunner(f).run(suite)
+    else:
+        print "invalid run mode for _runall"
