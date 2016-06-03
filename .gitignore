@@ -10,3 +10,5 @@
 
 # Git merge stuff
 *.orig
+
+**/log/**

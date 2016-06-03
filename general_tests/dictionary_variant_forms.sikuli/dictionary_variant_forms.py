@@ -1,13 +1,11 @@
 from test_helper import *
-import open_flex_from_backup
+import flex_helper
 
 # Opening
 #############
 
-backups_folder = home_folder + "/FwIntegrationTests/projects/"
-
 # Open Tagbanwa
-open_flex_from_backup.open_backup(backups_folder + "Tagbanwa, Calamian 2015-07-07 1037 for testing purposes.fwbackup", True)
+flex_helper.openFwBackup(""Tagbanwa, Calamian 2015-07-07 1037 for testing purposes.fwbackup", 120)
 wait(60)
 
 

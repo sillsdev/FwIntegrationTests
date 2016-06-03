@@ -168,12 +168,13 @@
   </Property>
   <Property>
     <name>db$local$lexicon$lexiconEdit$CurrentSlicePartName</name>
+    <value xsi:type="xsd:string">MoForm-Detail-AsLexemeForm</value>
     <doPersist>true</doPersist>
     <doDispose>false</doDispose>
   </Property>
   <Property>
     <name>db$local$lexicon$lexiconEdit$CurrentSliceObjectGuid</name>
-    <value xmlns:q1="http://microsoft.com/wsdl/types/" xsi:type="q1:guid">00000000-0000-0000-0000-000000000000</value>
+    <value xmlns:q1="http://microsoft.com/wsdl/types/" xsi:type="q1:guid">6e0608a8-2b0e-4e11-b08c-9333fcfe0b2f</value>
     <doPersist>true</doPersist>
     <doDispose>false</doDispose>
   </Property>
