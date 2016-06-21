@@ -3,8 +3,8 @@ import sys, re, traceback
 import shutil
 from test_helper import *
 
-## Summary: Crash on category edit pane when click "Ok" button on "Choose inflectional feature" dialog box.
-## Creating New FieldWorks Project 
+## Summary: Crash on category edit pane when click "Ok" button on "Choose inflectional feature" dialog box. ##
+## Creating New FieldWorks Project ##
 def NewProject():
     wait(2)    
     App.open("fieldworks")
@@ -23,7 +23,7 @@ def NewProject():
     ProjectName = newName + GetTimeNow
     print ProjectName     
     
-    ## Creating Region for "New FieldWorks Project" dialog box
+    ## Creating Region for "New FieldWorks Project" dialog box #
     FindReg4 = find("NewDialogRegion.png")
     Below = FindReg4.below()
     rright = FindReg4.right()
@@ -34,7 +34,7 @@ def NewProject():
     display3.find(Pattern("ClickOkNew.png").similar(0.90)).click()
     wait(4)
     
-    ## Creating Region for "Choose a List of Anthropology Categories" dialog box.    
+    ## Creating Region for "Choose a List of Anthropology Categories" dialog box. #    
     FindReg3 = find("TextChoose.png")    
     B_below = FindReg3.below()
     L_Left = FindReg3.left()
@@ -44,7 +44,7 @@ def NewProject():
     display2.find(Pattern("ChooseListOk.png").similar(0.90)).click()
     wait(2)
 
-## Creating New Stem_Name for category 
+## Creating New Stem_Name for category ###
 def Category_Stem_Name():
     wait("LexiconPane.png", 30)
     click("GrammarPane.png")
@@ -68,7 +68,7 @@ def Category_Stem_Name():
     NounStem.find("StemNameField.png").click()
 
 
-def GetGreen_Text(): # Creating text file on desktop for error stack lines when green crash appears.
+def GetGreen_Text(): # Creating text file on desktop for error stack lines when green crash appears. #
     CreateFile = os.path.expanduser("~/Desktop/LT-16220.txt")
     Open_file = open(CreateFile, "wb+")
     getclip = Env.getClipboard()
@@ -77,7 +77,7 @@ def GetGreen_Text(): # Creating text file on desktop for error stack lines when 
     out = Open_file.read()
     Open_file.close()
 
-def Green_Stack_Image(): # Creating screenshot on desktop when green crash appears
+def Green_Stack_Image(): # Creating screenshot on desktop when green crash appears #
 
     find("ViewDetails.png").click()
     screen = Screen()
@@ -94,7 +94,7 @@ def Green_Stack_Image(): # Creating screenshot on desktop when green crash appea
     else:
         print "There is no green crash appear"
 
-def findfailederror(): ## Find an image when It did not find in the screen.
+def findfailederror(): ## Find an image when It did not find in the screen. #
     err = str(sys.exc_info()[1])
     errs = err.split()[4]
     pth = sys.argv[0]
@@ -103,7 +103,7 @@ def findfailederror(): ## Find an image when It did not find in the screen.
     PTR = 'This ' + str(vrie) + ' field is failed. So, Please find a picture in ' + str(pth) + str(errs) + ' path. ' 
     print PTR 
 
-## Exception handling for all method when an image is failed to find.
+## Exception handling for all method when an image is failed to find. #
 try:
     NewProject()
     Category_Stem_Name()
