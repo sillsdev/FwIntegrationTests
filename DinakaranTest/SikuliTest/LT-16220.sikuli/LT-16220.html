@@ -1,0 +1,189 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>LT-16220.sikuli</h2> <a href="LT-16220.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">import</span> os
+<span class="kw">import</span> sys, re, traceback
+<span class="kw">import</span> shutil
+<span class="kw">from</span> test_helper <span class="kw">import</span> *
+
+<span class="cmt">## Summary: Crash on category edit pane when click "Ok" button on "Choose inflectional feature" dialog box. ##</span>
+<span class="cmt">## Creating New FieldWorks Project ##</span>
+<span class="kw">def</span> NewProject():
+    <span class="skw">wait</span>(<span class="dig">2</span>)
+    App.open(<span class="str">"fieldworks"</span>)
+    <span class="skw">wait</span>(<span class="dig">6</span>)
+
+    <span class="cmt">### Creating region on "Language Explorer" dialog box ###</span>
+    FindReg2 = <span class="skw">find</span>(<img src="CreateRegion.png" />)
+    Below = FindReg2.below()
+    rright = FindReg2.right()
+    display1 = Region(Below.getX(), Below.getY(), Below.getW() + rright.getW(), Below.getH())
+    display1.highlight(<span class="dig">1</span>)
+    display1.<span class="skw">find</span>(Pattern(<img src="CreateNW.png" />).similar(<span class="dig">0.90</span>)).<span class="skw">click</span>()
+
+    newName = <span class="str">"Choose inflectional feature_16220_"</span>
+    GetTimeNow = time.strftime (<span class="str">'%Y %m %d - %H%M%S'</span>)
+    ProjectName = newName + GetTimeNow
+    <span class="kw">print</span> ProjectName
+
+    <span class="cmt">## Creating Region for "New FieldWorks Project" dialog box #</span>
+    FindReg4 = <span class="skw">find</span>(<img src="NewDialogRegion.png" />)
+    Below = FindReg4.below()
+    rright = FindReg4.right()
+    display3 = Region(Below.getX(), Below.getY(), Below.getW() + rright.getW(), Below.getH())
+    display3.highlight(<span class="dig">1</span>)
+
+    display3.<span class="skw">find</span>(Pattern(<img src="NewPro.png" />).similar(<span class="dig">0.90</span>)).<span class="skw">type</span>(ProjectName)
+    display3.<span class="skw">find</span>(Pattern(<img src="ClickOkNew.png" />).similar(<span class="dig">0.90</span>)).<span class="skw">click</span>()
+    <span class="skw">wait</span>(<span class="dig">4</span>)
+
+    <span class="cmt">## Creating Region for "Choose a List of Anthropology Categories" dialog box. #    </span>
+    FindReg3 = <span class="skw">find</span>(<img src="TextChoose.png" />)
+    B_below = FindReg3.below()
+    L_Left = FindReg3.left()
+    display2 = Region(L_Left.getX(), B_below.getY(), B_below.getW() + L_Left.getW(), B_below.getH())
+    display2.highlight(<span class="dig">1</span>)
+
+    display2.<span class="skw">find</span>(Pattern(<img src="ChooseListOk.png" />).similar(<span class="dig">0.90</span>)).<span class="skw">click</span>()
+    <span class="skw">wait</span>(<span class="dig">2</span>)
+
+<span class="cmt">## Creating New Stem_Name for category ###</span>
+<span class="kw">def</span> Category_Stem_Name():
+    <span class="skw">wait</span>(<img src="LexiconPane.png" />, <span class="dig">30</span>)
+    <span class="skw">click</span>(<img src="GrammarPane.png" />)
+    <span class="skw">wait</span>(<img src="Grammarlists.png" />, <span class="dig">10</span>)
+    <span class="skw">find</span>(<img src="CategoryEdit.png" />).<span class="skw">click</span>()
+    <span class="skw">find</span>(Pattern(<img src="NounTest.png" />).similar(<span class="dig">0.90</span>)).<span class="skw">click</span>()
+    <span class="cmt">## Creating Region for right side "Category" pane.</span>
+    Category = <span class="skw">find</span>(<img src="CategoryRight.png" />)
+    Below = Category.below()
+    rright = Category.right()
+    NounStem = Region(Below.getX(), Below.getY(), Below.getW() + rright.getW(), Below.getH())
+<span class="cmt">#    NounStem.highlight(1)</span>
+
+    NounStem.<span class="skw">find</span>(<img src="StemNames.png" />).<span class="skw">click</span>()
+    NounStem.<span class="skw">find</span>(<img src="InsertStem.png" />).<span class="skw">click</span>()
+    NounStem.<span class="skw">wait</span>(Pattern(<img src="FeatureSet.png" />).similar(<span class="dig">0.90</span>),<span class="dig">6</span>)
+    NounStem.<span class="skw">find</span>(Pattern(<img src="FeatureSet.png" />).similar(<span class="dig">0.90</span>)).<span class="skw">click</span>()
+    NounStem.<span class="skw">find</span>(<img src="ThreedotsFeatures.png" />).<span class="skw">click</span>()
+    <span class="skw">wait</span>(<img src="InflectionFeaturesforNoun.png" />, <span class="dig">10</span>)
+    <span class="skw">find</span>(<img src="OkClick.png" />).<span class="skw">click</span>()
+    NounStem.<span class="skw">find</span>(<img src="StemNameField.png" />).<span class="skw">click</span>()
+
+
+<span class="kw">def</span> GetGreen_Text(): <span class="cmt"># Creating text file on desktop for error stack lines when green crash appears. #</span>
+    CreateFile = os.path.expanduser(<span class="str">"~/Desktop/LT-16220.txt"</span>)
+    Open_file = open(CreateFile, <span class="str">"wb+"</span>)
+    getclip = Env.getClipboard()
+<span class="cmt">#    print getclip</span>
+    Open_file.write(getclip)
+    out = Open_file.read()
+    Open_file.close()
+
+<span class="kw">def</span> Green_Stack_Image(): <span class="cmt"># Creating screenshot on desktop when green crash appears #</span>
+
+    <span class="skw">find</span>(<img src="ViewDetails.png" />).<span class="skw">click</span>()
+    screen = Screen()
+    file = screen.<span class="skw">capture</span>(screen.getScreen())
+    <span class="kw">print</span>(<span class="str">"Saved screen as "</span>+file)
+    shutil.move(file, os.path.expanduser(<img src=r"~\Desktop\LT-16220.png" />))
+
+    <span class="kw">if</span> exists(Pattern(<img src="CopyInfo.png" />).similar(<span class="dig">0.90</span>)):
+
+        <span class="skw">click</span>(Pattern(<img src="Radioselect.png" />).similar(<span class="dig">0.90</span>))
+        <span class="skw">click</span>(Pattern(<img src="ExitAPP1.png" />).similar(<span class="dig">0.90</span>))
+        <span class="skw">wait</span>(<span class="dig">2</span>)
+        GetGreen_Text()
+    <span class="kw">else</span>:
+        <span class="kw">print</span> <span class="str">"There is no green crash appear"</span>
+
+<span class="kw">def</span> findfailederror(): <span class="cmt">## Find an image when It did not find in the screen. #</span>
+    err = str(sys.exc_info()[<span class="dig">1</span>])
+    errs = err.split()[<span class="dig">4</span>]
+    pth = sys.argv[<span class="dig">0</span>]
+    ful_err = traceback.format_exc()
+    vrie = ful_err.split()[<span class="dig">11</span>]
+    PTR = <span class="str">'This '</span> + str(vrie) + <span class="str">' field is failed. So, Please find a picture in '</span> + str(pth) + str(errs) + <span class="str">' path. '</span>
+    <span class="kw">print</span> PTR
+
+<span class="cmt">## Exception handling for all method when an image is failed to find. #</span>
+<span class="kw">try</span>:
+    NewProject()
+    Category_Stem_Name()
+
+<span class="kw">except</span> FindFailed:
+
+    Green_Stack_Image()
+    findfailederror()
+</pre>
+</body>
+</html>

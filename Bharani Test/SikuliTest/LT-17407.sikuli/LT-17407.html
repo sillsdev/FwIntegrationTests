@@ -1,0 +1,113 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>LT-17407.sikuli</h2> <a href="LT-17407.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="str">'''
+from test_helper import *
+import flex_helper
+list = "Sena826ExampleWin 2016-04-27 1427 (1).fwbackup"
+flex_helper.openFwBackup(list, 10)
+'''</span>
+<span class="cmt">#Restore a project fucntionality is not working for the second time while running the above script</span>
+App.open(<span class="str">"fieldworks"</span>)
+<span class="skw">click</span>(<img src="1466425755754.png" />)
+<span class="skw">click</span>(<img src="1466425919318.png" />)
+<span class="skw">click</span>(<img src="1466425938739.png" />)
+<span class="skw">wait</span>(<span class="dig">5</span>)
+r = Region(<span class="dig">158</span>,<span class="dig">23</span>,<span class="dig">765</span>,<span class="dig">555</span>)
+<span class="skw">wait</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(<img src="1466426737583.png" />)
+<span class="skw">wait</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1466427073614.png" />).targetOffset(-<span class="dig">59</span>,-<span class="dig">1</span>))
+<span class="skw">wait</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(<img src="1466426820079.png" />)
+<span class="skw">wait</span>(<span class="dig">2</span>)
+r1 = Region(<span class="dig">178</span>,<span class="dig">193</span>,<span class="dig">743</span>,<span class="dig">775</span>)
+<span class="skw">wait</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1466427183020.png" />).targetOffset(-<span class="dig">35</span>,<span class="dig">3</span>))
+<span class="skw">wait</span>(<span class="dig">1</span>)
+<span class="skw">click</span>(Pattern(<img src="1466427210263.png" />).targetOffset(-<span class="dig">38</span>,<span class="dig">0</span>))
+<span class="skw">wait</span>(<span class="dig">1</span>)
+<span class="skw">click</span>(<img src="1466427258247.png" />)
+r2= Region(<span class="dig">189</span>,<span class="dig">636</span>,<span class="dig">796</span>,<span class="dig">318</span>)
+r2.<span class="skw">find</span>(Pattern(<img src="1466158277577.png" />).targetOffset(-<span class="dig">16</span>,<span class="dig">6</span>)).highlight(<span class="dig">2</span>)
+<span class="kw">if</span> inside().<span class="skw">find</span>(Pattern(<img src="1466158277577.png" />).targetOffset(-<span class="dig">16</span>,<span class="dig">6</span>)).exists(<img src="1466157944386.png" />):
+    <span class="skw">popup</span>(<span class="str">"Texts appears in Before Box - Expected"</span>)
+<span class="kw">else</span>:
+    <span class="skw">popup</span>(<span class="str">" Before texts are not found"</span>)
+r2.<span class="skw">find</span>(<img src="1466427507610.png" />).highlight(<span class="dig">2</span>)
+<span class="kw">if</span> inside().<span class="skw">find</span>(Pattern(<img src="1466427507610.png" />).targetOffset(-<span class="dig">35</span>,<span class="dig">6</span>)).exists(<img src="1466427550140.png" />):
+     <span class="skw">popup</span>(<span class="str">"Texts appears in After Box - Expected"</span>)
+<span class="kw">else</span>:
+     <span class="skw">popup</span>(<span class="str">"After Texts are not found"</span>)
+</pre>
+</body>
+</html>
