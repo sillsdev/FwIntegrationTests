@@ -1,0 +1,118 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>Browseview.sikuli</h2> <a href="Browseview.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> test_helper <span class="kw">import</span> *
+App.open(<span class="str">"fieldworks"</span>)
+<span class="skw">click</span>(<img src="1467715914615.png" />)
+<span class="skw">wait</span>(<span class="dig">5</span>)
+<span class="skw">click</span>(<img src="1467716009337.png" />)
+r1 = Region(<span class="dig">237</span>,<span class="dig">18</span>,<span class="dig">500</span>,<span class="dig">280</span>)
+r1.<span class="skw">click</span>(<img src="1467716034252.png" />)
+r1.<span class="skw">click</span>(<img src="1467716437125.png" />)
+<span class="skw">wait</span>(<span class="dig">2</span>)
+r1.<span class="skw">click</span>(<img src="1467716453973.png" />)
+<span class="skw">wait</span>(<span class="dig">2</span>)
+r = Region(<span class="dig">280</span>,<span class="dig">265</span>,<span class="dig">722</span>,<span class="dig">464</span>)
+r.<span class="skw">click</span>(<img src="1467716153875.png" />)
+r.<span class="skw">click</span>(<img src="1467716179276.png" />)
+r.<span class="skw">click</span>(<img src="1467716576237.png" />)
+r.<span class="skw">click</span>(<img src="1467716179276.png" />)
+r.<span class="skw">click</span>(<img src="1467716604751.png" />)
+r.<span class="skw">click</span>(<img src="1467716179276.png" />)
+r.<span class="skw">click</span>(<img src="1467716604751.png" />)
+r.<span class="skw">click</span>(<img src="1467716648772.png" />)
+r.wheel(WHEEL_DOWN,<span class="dig">35</span>)
+r.<span class="skw">click</span>(<img src="1467718873645.png" />)
+r.<span class="skw">click</span>(<img src="1467716179276.png" />)
+r.<span class="skw">click</span>(<img src="1467718917003.png" />)
+r.<span class="skw">click</span>(<img src="1467716179276.png" />)
+r.<span class="skw">click</span>(<img src="1467718934674.png" />)
+r.<span class="skw">click</span>(<img src="1467716179276.png" />)
+r.<span class="skw">click</span>(<img src="1467725818655.png" />)
+<span class="skw">wait</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1467724342982.png" />).similar(<span class="dig">0.90</span>).targetOffset(<span class="dig">1</span>,-<span class="dig">4</span>))
+<span class="skw">wait</span>(<span class="dig">2</span>)
+<span class="skw">find</span>(<img src="1467724469032.png" />).inside().<span class="skw">find</span>(<img src="1467724393124.png" />).<span class="skw">click</span>()
+<span class="skw">wait</span>(<span class="dig">2</span>)
+r2 = Region(<span class="dig">300</span>,<span class="dig">271</span>,<span class="dig">706</span>,<span class="dig">465</span>)
+r2.<span class="skw">doubleClick</span>(<img src="1467724906691.png" />)
+r2.<span class="skw">doubleClick</span>(<img src="1467724928742.png" />)
+r2.<span class="skw">doubleClick</span>(<img src="1467724940872.png" />)
+r2.<span class="skw">click</span>(<img src="1467724948180.png" />)
+<span class="skw">wait</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(<img src="1467725323067.png" />)
+<span class="skw">find</span>(<img src="1467725376087.png" />).inside().<span class="skw">find</span>(<img src="1467725427875.png" />).<span class="skw">click</span>()
+<span class="skw">wait</span>(<span class="dig">2</span>)
+<span class="skw">popup</span>(<span class="str">"Browse view is working well"</span>)
+</pre>
+</body>
+</html>
