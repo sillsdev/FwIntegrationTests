@@ -1,0 +1,200 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>HTMLTestRunner.sikuli</h2> <a href="HTMLTestRunner.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">import</span> unittest
+<span class="kw">import</span> HTMLTestRunner
+<span class="kw">import</span> os
+<span class="kw">import</span> sys, re, traceback
+<span class="kw">import</span> inspect
+<span class="kw">from</span> test_helper <span class="kw">import</span> *
+<span class="kw">from</span> sikuli <span class="kw">import</span> *
+
+myScriptDirectory = os.path.abspath(os.path.split(sys.argv[<span class="dig">0</span>])[<span class="dig">0</span>])
+addImportPath(myScriptDirectory)
+<span class="kw">import</span> CreateProject
+<span class="kw">import</span> CreateNewEntry
+<span class="kw">import</span> ShortCutKeys
+<span class="kw">import</span> Errors
+
+
+
+<span class="kw">class</span> DictionsryPaneKeysTest(unittest.TestCase):
+
+    <span class="kw">def</span> test_1_startup(self):
+        <span class="kw">try</span>:
+            CP = CreateProject.CreateProject()
+            CP.NewProject()
+            NE = CreateNewEntry.CreateNewEntry()
+            NewEntry = <span class="str">"Builders"</span>
+            NE.NewEntry(NewEntry)
+        <span class="kw">except</span>(FindFailed, AssertionError):
+            ERR = Errors.ErrorsTest()
+            ERR.FindFailed_Assertion_error()
+            <span class="kw">assert</span> False
+
+    <span class="kw">def</span> test_2_Navigate(self):
+        <span class="kw">try</span>:
+            Navigate = ShortCutKeys.ShortCutKeysTest()
+            Navigate.NavigateDictionaryPane()
+        <span class="kw">except</span>(FindFailed, AssertionError):
+            ERR = Errors.ErrorsTest()
+            ERR.FindFailed_Assertion_error()
+            <span class="kw">assert</span> False
+
+    <span class="kw">def</span> test_7_Findbox1(self):
+        <span class="kw">try</span>:
+            checkbox1 = ShortCutKeys.ShortCutKeysTest()
+            checkbox1.Findbox1()
+        <span class="kw">except</span>(FindFailed, AssertionError):
+            ERR = Errors.ErrorsTest()
+            ERR.FindFailed_Assertion_error()
+            <span class="cmt">#AFE.FindFailed_Assertion_error()</span>
+            <span class="kw">assert</span> False
+
+    <span class="kw">def</span> test_4_Findbox2(self):
+
+        <span class="kw">try</span>:
+            checkbox2 = ShortCutKeys.ShortCutKeysTest()
+            checkbox2.Findbox2()
+        <span class="kw">except</span>(FindFailed, AssertionError):
+            ERR = Errors.ErrorsTest()
+            ERR.FindFailed_Assertion_error()
+            <span class="kw">assert</span> False
+
+    <span class="kw">def</span> test_5_Delete(self):
+
+        <span class="kw">try</span>:
+            Deletes = ShortCutKeys.ShortCutKeysTest()
+            Deletes.Delete()
+        <span class="kw">except</span>(FindFailed, AssertionError):
+            ERR = Errors.ErrorsTest()
+            ERR.FindFailed_Assertion_error()
+            <span class="kw">assert</span> False
+
+    <span class="kw">def</span> test_6_UndoRedo(self):
+
+        <span class="kw">try</span>:
+            UD = ShortCutKeys.ShortCutKeysTest()
+            UD.UndoRedo()
+        <span class="kw">except</span>(FindFailed, AssertionError):
+            ERR = Errors.ErrorsTest()
+            ERR.FindFailed_Assertion_error()
+            <span class="kw">assert</span> False
+
+    <span class="kw">def</span> test_3_NewEntryBox(self):
+
+        <span class="kw">try</span>:
+            NE = ShortCutKeys.ShortCutKeysTest()
+            NE.NewEntryBox()
+        <span class="kw">except</span>(FindFailed, AssertionError):
+            ERR = Errors.ErrorsTest()
+            ERR.FindFailed_Assertion_error()
+            <span class="kw">assert</span> False
+
+    <span class="kw">def</span> test_8_ForwardBackward(self):
+
+        <span class="kw">try</span>:
+            LR = ShortCutKeys.ShortCutKeysTest()
+            LR.LeftandRight()
+        <span class="kw">except</span>(FindFailed, AssertionError):
+            ERR = Errors.ErrorsTest()
+            ERR.FindFailed_Assertion_error()
+            <span class="kw">assert</span> False
+
+    <span class="kw">def</span> test_9_Endup(self):
+        App.close(<span class="str">"fieldworks"</span>)
+
+
+
+
+
+
+test_classes_to_run = [DictionsryPaneKeysTest]
+loader = unittest.TestLoader()
+
+suites_list = []
+<span class="kw">for</span> test_class <span class="kw">in</span> test_classes_to_run:
+    suite = loader.loadTestsFromTestCase(test_class)
+    suites_list.append(suite)
+
+big_suite = unittest.TestSuite(suites_list)
+
+myScriptPath = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+CreateFile = os.path.expanduser(myScriptPath + <span class="str">"/SuiteReports.html"</span>)
+outfile = open(CreateFile, <span class="str">"w"</span>)
+
+runner = HTMLTestRunner.HTMLTestRunner(stream=outfile, title=<span class="str">"Test Report"</span>, description=<span class="str">"Directory Pane Scenarios Testing"</span>)
+runner.run(big_suite)
+outfile.close()
+</pre>
+</body>
+</html>
