@@ -1,0 +1,22 @@
+cmd ="C:\Program Files (x86)\SIL\FieldWorks 8\Flex.exe" 
+openApp(cmd)
+wait(5)
+click("1466778782446.png")
+click(Pattern("1470142830036.png").targetOffset(-55,2))
+click(Pattern("1470143130338.png").similar(0.80).targetOffset(2,-3))
+wheel(WHEEL_DOWN, 30)  # Scrolls down 1 times 
+click("1465481622886.png")
+click("1465397946792.png")
+wait(8)
+click(Pattern("1465398031149.png").similar(0.80).targetOffset(-3,-1))
+wait(8)
+click("1465481693292.png")
+wait(10)
+find("1465560843528.png").highlight(2)    
+click("1465561012616.png")
+click("1465561032990.png")
+click("1465561053638.png")
+wait(5)
+click("1465561338053.png")
+wheel(WHEEL_DOWN, 244)  # Scrolls down 244 times 
+wheel(WHEEL_UP,   12)
