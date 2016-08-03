@@ -13,7 +13,7 @@ import CreateProject
 import CreateNewEntry
 import ShortCutKeys
 import Errors
-
+import MediaFile
 
 
 class DictionsryPaneKeysTest(unittest.TestCase):
@@ -98,16 +98,25 @@ class DictionsryPaneKeysTest(unittest.TestCase):
             ERR = Errors.ErrorsTest() 
             ERR.FindFailed_Assertion_error()
             assert False
-
-    def test_9_Endup(self):
-        App.close("fieldworks")
-
-    
   
 
+class MediafileTest(unittest.TestCase):
+
+    def test_1_Links(self):
+        
+        try:
+            LK = MediaFile.LinkTest()
+            LK.Links()                   
+        except(FindFailed, AssertionError):
+            ERR = Errors.ErrorsTest() 
+            ERR.FindFailed_Assertion_error() 
+            assert False    
+  
+    def test_2_Endup(self):
+        App.close("fieldworks")
 
 
-test_classes_to_run = [DictionsryPaneKeysTest]
+test_classes_to_run = [DictionsryPaneKeysTest, MediafileTest]
 loader = unittest.TestLoader()
     
 suites_list = []

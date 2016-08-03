@@ -9,3 +9,9 @@ Notes:
 	$  Newproject is created by using “CreateProject.sikuli” when everytime execute the “UnitTestScenarios.sikuli”
 	$ Two lexical entries is created by using “CreateNewEntry.sikuli” before going to execute the scenarios. 
 	$ Dictionary pane short cut keys are validate by using “ShortCutKeys.sikuli”
+	
+# Some known appeared in latest nightly build too. Please refer below point.
+	$ Ctrl+F Key does not work in dictionary pane.
+	$ Alt+Left Key does not work it.
+	$ Clicking Hyperlink does not work in dictionary pane.
+So, these error appeared in the SuiteReports*.html	

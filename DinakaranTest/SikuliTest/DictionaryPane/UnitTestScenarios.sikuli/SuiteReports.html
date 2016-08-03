@@ -189,9 +189,9 @@ function showOutput(id, name) {
 
 <div class='heading'>
 <h1>Test Report</h1>
-<p class='attribute'><strong>Start Time:</strong> 2016-07-29 16:27:56</p>
-<p class='attribute'><strong>Duration:</strong> 0:01:45.337000</p>
-<p class='attribute'><strong>Status:</strong> Pass 7 Failure 2</p>
+<p class='attribute'><strong>Start Time:</strong> 2016-08-03 18:24:22</p>
+<p class='attribute'><strong>Duration:</strong> 0:02:08.461000</p>
+<p class='attribute'><strong>Status:</strong> Pass 7 Failure 3</p>
 
 <p class='description'>Directory Pane Scenarios Testing</p>
 </div>
@@ -223,11 +223,11 @@ function showOutput(id, name) {
 
 <tr class='failClass'>
     <td>DictionsryPaneKeysTest</td>
-    <td>9</td>
-    <td>7</td>
+    <td>8</td>
+    <td>6</td>
     <td>2</td>
     <td>0</td>
-    <td><a href="javascript:showClassDetail('c1',9)">Detail</a></td>
+    <td><a href="javascript:showClassDetail('c1',8)">Detail</a></td>
 </tr>
 
 <tr id='pt1.1' class='hiddenRow'>
@@ -278,7 +278,7 @@ function showOutput(id, name) {
 ft1.7: (&lt;type 'exceptions.AssertionError'&gt;, AssertionError(), &lt;traceback object at 0x2&gt;)
 The  checkbox1.Findbox1() function is failed because of AssertionError(), and this error appeared in D:/SikuliDocs/BroadTestPlan/DictionaryPane/UnitTestScenarios.sikuli file. 
 Traceback (most recent call last):
-  File "D:\SikuliDocs\BroadTestPlan\DictionaryPane\UnitTestScenarios.sikuli\UnitTestScenarios.py", line 49, in test_7_Findbox1
+  File "D:\SikuliDocs\BroadTestPlan\DictionaryPane\UnitTestScenarios.sikuli\UnitTestScenarios.py", line 50, in test_7_Findbox1
     assert False
 AssertionError
 
@@ -308,7 +308,7 @@ AssertionError
 ft1.8: (&lt;type 'exceptions.AssertionError'&gt;, AssertionError(), &lt;traceback object at 0x3&gt;)
 The  LR.LeftandRight() function is failed because of AssertionError(), and this error appeared in D:/SikuliDocs/BroadTestPlan/DictionaryPane/UnitTestScenarios.sikuli file. 
 Traceback (most recent call last):
-  File "D:\SikuliDocs\BroadTestPlan\DictionaryPane\UnitTestScenarios.sikuli\UnitTestScenarios.py", line 99, in test_8_ForwardBackward
+  File "D:\SikuliDocs\BroadTestPlan\DictionaryPane\UnitTestScenarios.sikuli\UnitTestScenarios.py", line 100, in test_8_ForwardBackward
     assert False
 AssertionError
 
@@ -320,16 +320,55 @@ AssertionError
     </td>
 </tr>
 
-<tr id='pt1.9' class='hiddenRow'>
-    <td class='none'><div class='testcase'>test_9_Endup</div></td>
+<tr class='failClass'>
+    <td>MediafileTest</td>
+    <td>2</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c2',2)">Detail</a></td>
+</tr>
+
+<tr id='ft2.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_1_Links</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.1')" >
+        fail</a>
+
+    <div id='div_ft2.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.1: (&lt;type 'exceptions.AssertionError'&gt;, AssertionError(), &lt;traceback object at 0x4&gt;)
+The  LK.Links() function is failed because of AssertionError(), and this error appeared in D:/SikuliDocs/BroadTestPlan/DictionaryPane/UnitTestScenarios.sikuli file. 
+Traceback (most recent call last):
+  File "D:\SikuliDocs\BroadTestPlan\DictionaryPane\UnitTestScenarios.sikuli\UnitTestScenarios.py", line 113, in test_1_Links
+    assert False
+AssertionError
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_2_Endup</div></td>
     <td colspan='5' align='center'>pass</td>
 </tr>
 
 <tr id='total_row'>
     <td>Total</td>
-    <td>9</td>
+    <td>10</td>
     <td>7</td>
-    <td>2</td>
+    <td>3</td>
     <td>0</td>
     <td>&nbsp;</td>
 </tr>

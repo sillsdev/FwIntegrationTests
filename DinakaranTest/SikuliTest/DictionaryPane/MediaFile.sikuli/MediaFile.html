@@ -1,0 +1,111 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>MediaFile.sikuli</h2> <a href="MediaFile.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> test_helper <span class="kw">import</span> *
+<span class="kw">from</span> sikuli <span class="kw">import</span> *
+
+<span class="kw">class</span> LinkTest():
+
+    <span class="kw">def</span> Links(self):
+        <span class="skw">find</span>(<img src="ViewClick.png" />).<span class="skw">click</span>()
+        <span class="skw">find</span>(<img src="ViewLexicon.png" />).<span class="skw">click</span>()
+        <span class="skw">find</span>(<img src="ViewLexiconEdit.png" />).<span class="skw">click</span>()
+
+        <span class="skw">find</span>(<img src="ClickTextsWords.png" />).<span class="skw">click</span>()
+        <span class="skw">find</span>(Pattern(<img src="EditMenu.png" />).similar(<span class="dig">0.80</span>)).<span class="skw">click</span>()
+        <span class="skw">find</span>(<img src="CopyLink.png" />).<span class="skw">click</span>()
+        <span class="skw">find</span>(<img src="ClickLexicon.png" />).<span class="skw">click</span>()
+
+        <span class="skw">find</span>(<img src="ClickNote.png" />).<span class="skw">click</span>()
+        <span class="skw">type</span>(<span class="str">"Links"</span>)
+        <span class="skw">type</span>(<span class="str">"a"</span>, Key.CTRL)
+        <span class="skw">find</span>(Pattern(<img src="EditMenu.png" />).similar(<span class="dig">0.80</span>)).<span class="skw">click</span>()
+        <span class="skw">find</span>(Pattern(<img src="PasteClick.png" />).targetOffset(-<span class="dig">61</span>,-<span class="dig">10</span>)).<span class="skw">click</span>()
+
+        <span class="skw">find</span>(<img src="DictionaryClick.png" />).<span class="skw">click</span>()
+        <span class="skw">wait</span>(<img src="WaitDictionary.png" />)
+
+        <span class="skw">find</span>(<img src="ClickTools.png" />).<span class="skw">click</span>()
+        <span class="skw">find</span>(<img src="ClickConfigure.png" />).<span class="skw">click</span>()
+        <span class="skw">find</span>(<img src="ClickDictionaryOpen.png" />).<span class="skw">click</span>()
+        <span class="skw">wait</span>(<img src="WaitClickView.png" />)
+        <span class="skw">find</span>(Pattern(<img src="CheckNote.png" />).similar(<span class="dig">0.90</span>).targetOffset(-<span class="dig">12</span>,<span class="dig">1</span>)).<span class="skw">click</span>()
+        <span class="skw">find</span>(<img src="ClickOk.png" />).<span class="skw">click</span>()
+        <span class="skw">wait</span>(<img src="CheckLinkTest.png" />, <span class="dig">5</span>)
+        <span class="kw">assert</span> exists(<img src="CheckLinkTest.png" />)
+
+        <span class="skw">find</span>(<img src="CheckLinkTest.png" />).<span class="skw">click</span>()
+        <span class="skw">wait</span>(<span class="dig">2</span>)
+        <span class="kw">assert</span> exists(<img src="FindTextsWords.png" />)
+</pre>
+</body>
+</html>

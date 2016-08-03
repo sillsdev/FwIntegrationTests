@@ -84,7 +84,7 @@ addImportPath(myScriptDirectory)
 <span class="kw">import</span> CreateNewEntry
 <span class="kw">import</span> ShortCutKeys
 <span class="kw">import</span> Errors
-
+<span class="kw">import</span> MediaFile
 
 
 <span class="kw">class</span> DictionsryPaneKeysTest(unittest.TestCase):
@@ -170,15 +170,24 @@ addImportPath(myScriptDirectory)
             ERR.FindFailed_Assertion_error()
             <span class="kw">assert</span> False
 
-    <span class="kw">def</span> test_9_Endup(self):
+
+<span class="kw">class</span> MediafileTest(unittest.TestCase):
+
+    <span class="kw">def</span> test_1_Links(self):
+
+        <span class="kw">try</span>:
+            LK = MediaFile.LinkTest()
+            LK.Links()
+        <span class="kw">except</span>(FindFailed, AssertionError):
+            ERR = Errors.ErrorsTest()
+            ERR.FindFailed_Assertion_error()
+            <span class="kw">assert</span> False
+
+    <span class="kw">def</span> test_2_Endup(self):
         App.close(<span class="str">"fieldworks"</span>)
 
 
-
-
-
-
-test_classes_to_run = [DictionsryPaneKeysTest]
+test_classes_to_run = [DictionsryPaneKeysTest, MediafileTest]
 loader = unittest.TestLoader()
 
 suites_list = []

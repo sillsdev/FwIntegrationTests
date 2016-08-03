@@ -18,7 +18,7 @@ class CreateProject():
     #    display1.highlight(1)
         display1.find("CreateNW.png").click()
 
-        newName = "DictionaryPane_Keys_Test"
+        newName = "DictionaryPane_Test"
         GetTimeNow = time.strftime ('%Y %m %d - %H%M%S')
         ProjectName = newName + GetTimeNow
         #print ProjectName     
