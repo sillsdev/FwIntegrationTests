@@ -1,0 +1,229 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>TWconcorddifferentsearch.sikuli</h2> <a href="TWconcorddifferentsearch.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">from</span> test_helper <span class="kw">import</span> *
+<span class="skw">click</span>(<img src="concordone.png" />)
+<span class="kw">def</span> concordance():
+    <span class="skw">type</span>(Pattern(<img src="fortextone.png" />).targetOffset(<span class="dig">60</span>,<span class="dig">2</span>),<span class="str">"a"</span>)
+    <span class="skw">click</span>(<img src="searchone.png" />)
+    <span class="skw">click</span>(Pattern(<img src="matchcase.png" />).exact().targetOffset(-<span class="dig">21</span>,<span class="dig">2</span>))
+    <span class="skw">click</span>(<img src="searchone.png" />)
+    <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="skw">click</span>(Pattern(<img src="matchtewo.png" />).similar(<span class="dig">0.90</span>).targetOffset(-<span class="dig">26</span>,<span class="dig">2</span>))
+    <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="skw">click</span>(Pattern(<img src="matchdiac.png" />).targetOffset(-<span class="dig">30</span>,-<span class="dig">4</span>))
+    <span class="skw">click</span>(<img src="searchone.png" />)
+    <span class="skw">click</span>(Pattern(<img src="matchdiac-1.png" />).targetOffset(-<span class="dig">44</span>,-<span class="dig">10</span>))
+<span class="kw">def</span> refreshone():
+    <span class="skw">click</span>(Pattern(<img src="fortextex.png" />).targetOffset(<span class="dig">64</span>,-<span class="dig">8</span>))
+    <span class="skw">type</span>(Key.BACKSPACE)
+    <span class="skw">click</span>(Pattern(<img src="refreshone.png" />).targetOffset(-<span class="dig">2</span>,-<span class="dig">1</span>))
+<span class="cmt">#Search in the line - BaseLine    </span>
+<span class="skw">find</span>(Pattern(<img src="baseling.png" />).similar(<span class="dig">0.90</span>)).<span class="skw">click</span>()
+<span class="skw">click</span>(Pattern(<img src="bsline.png" />).targetOffset(-<span class="dig">18</span>,<span class="dig">1</span>))
+<span class="kw">if</span> exists(Pattern(<img src="baseling.png" />).similar(<span class="dig">0.90</span>)):
+   concordance()
+<span class="kw">else</span>:
+    <span class="kw">print</span><span class="str">"The text does not appear"</span>
+<span class="kw">print</span><span class="str">"Baseline is working fine"</span>
+refreshone()
+<span class="skw">wait</span>(<span class="dig">2</span>)
+<span class="cmt">#Search in the line - Word</span>
+<span class="skw">find</span>(Pattern(<img src="baseling.png" />).similar(<span class="dig">0.90</span>)).<span class="skw">click</span>()
+<span class="skw">click</span>(Pattern(<img src="wordone.png" />).targetOffset(-<span class="dig">17</span>,<span class="dig">0</span>))
+<span class="kw">if</span> exists(<img src="wordgrey.png" />):
+   concordance()
+<span class="kw">else</span>:
+    <span class="kw">print</span><span class="str">"The text does not appear"</span>
+<span class="kw">print</span><span class="str">"Word is working fine"</span>
+<span class="skw">wait</span>(<span class="dig">2</span>)
+refreshone()
+<span class="cmt">#Search in the line - Morphemes</span>
+<span class="skw">find</span>(<img src="wordfine.png" />).highlight(<span class="dig">2</span>)
+<span class="skw">find</span>(Pattern(<img src="wordtwo.png" />).similar(<span class="dig">0.90</span>)).<span class="skw">click</span>()
+<span class="skw">click</span>(<img src="morphone.png" />)
+<span class="kw">if</span> exists(<img src="morphsearchon.png" />):
+   concordance()
+<span class="kw">else</span>:
+    <span class="kw">print</span><span class="str">"The text does not appear"</span>
+<span class="kw">print</span><span class="str">"Morpheme is working fine"</span>
+<span class="skw">wait</span>(<span class="dig">2</span>)
+refreshone()
+<span class="cmt">#Search in the Line - Lex.Entry</span>
+<span class="skw">find</span>(<img src="morphoe.png" />).highlight(<span class="dig">2</span>)
+<span class="skw">find</span>(Pattern(<img src="morphone-1.png" />).similar(<span class="dig">0.80</span>)).<span class="skw">click</span>()
+<span class="skw">click</span>(<img src="lexentyr.png" />)
+<span class="kw">if</span> exists(<img src="lexentry.png" />):
+    concordance()
+<span class="kw">else</span>:
+    <span class="kw">print</span><span class="str">"The text does not appear"</span>
+<span class="kw">print</span><span class="str">"Lex.Entry is working fine"</span>
+<span class="skw">wait</span>(<span class="dig">2</span>)
+refreshone()
+<span class="cmt">#Search in the Line - Lex.Gloss</span>
+<span class="skw">find</span>(<img src="lexentryone.png" />).highlight(<span class="dig">2</span>)
+<span class="skw">find</span>(Pattern(<img src="lexentone.png" />).similar(<span class="dig">0.80</span>)).<span class="skw">click</span>()
+<span class="skw">click</span>(<img src="lexglossone.png" />)
+<span class="kw">if</span> exists(<img src="linelex.png" />):
+    concordance()
+<span class="kw">else</span>:
+    <span class="kw">print</span><span class="str">"The text does not appear"</span>
+<span class="kw">print</span><span class="str">"Lex.Gloss is working fine"</span>
+<span class="skw">wait</span>(<span class="dig">2</span>)
+refreshone()
+<span class="cmt">#Search in the Line - Lex.Gram.Info</span>
+<span class="skw">find</span>(<img src="1470220896453.png" />).highlight(<span class="dig">2</span>)
+<span class="skw">find</span>(<img src="lexontoe.png" />).<span class="skw">click</span>()
+<span class="skw">click</span>(<img src="lexgraminfo.png" />)
+<span class="kw">if</span> exists(<img src="lexgraminfoone.png" />):
+   <span class="skw">find</span>(<img src="adverbone.png" />).<span class="skw">click</span>()
+   <span class="skw">click</span>(<img src="conjuntion.png" />)
+   <span class="skw">click</span>(<img src="searchone.png" />)
+<span class="kw">else</span>:
+    <span class="kw">print</span><span class="str">"The text does not appear"</span>
+<span class="kw">print</span><span class="str">"Lex.Gram.Info is working fine"</span>
+<span class="skw">wait</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="refreshone.png" />).targetOffset(-<span class="dig">2</span>,-<span class="dig">1</span>))
+<span class="cmt">#Search in the Line - Word Gloss</span>
+<span class="skw">find</span>(<img src="Lexgraminfo-1.png" />).highlight(<span class="dig">2</span>)
+<span class="skw">find</span>(Pattern(<img src="lexinfogram.png" />).similar(<span class="dig">0.90</span>)).<span class="skw">click</span>()
+<span class="skw">click</span>(<img src="wordglosse.png" />)
+<span class="kw">if</span> exists(<img src="wordglosone.png" />):
+    concordance()
+<span class="kw">else</span>:
+    <span class="kw">print</span><span class="str">"The text does not appear"</span>
+<span class="kw">print</span><span class="str">"Word Gloss is working fine"</span>
+<span class="skw">wait</span>(<span class="dig">2</span>)
+refreshone()
+<span class="cmt">#Search in the Line - Word Category</span>
+<span class="skw">find</span>(<img src="wordglosone-1.png" />).highlight(<span class="dig">2</span>)
+<span class="skw">find</span>(<img src="wordglosstwo.png" />).<span class="skw">click</span>()
+<span class="skw">click</span>(<img src="wordone-1.png" />)
+<span class="kw">if</span> exists(<img src="wordcatone.png" />):
+   <span class="skw">find</span>(Pattern(<img src="adverb.png" />).targetOffset(<span class="dig">26</span>,-<span class="dig">17</span>)).<span class="skw">click</span>()
+   <span class="skw">click</span>(<img src="posone.png" />)
+   <span class="skw">click</span>(<img src="searchone.png" />)
+   <span class="skw">click</span>(Pattern(<img src="refreshone.png" />).targetOffset(-<span class="dig">2</span>,-<span class="dig">1</span>))
+<span class="kw">else</span>:
+    <span class="kw">print</span><span class="str">"The text does not appear"</span>
+<span class="kw">print</span><span class="str">"Word Category is working fine"</span>
+<span class="skw">wait</span>(<span class="dig">2</span>)
+<span class="cmt">#Search in the Line - Free Translation</span>
+<span class="skw">find</span>(<img src="wordcatone.png" />).highlight(<span class="dig">2</span>)
+<span class="skw">find</span>(Pattern(<img src="wordcateo.png" />).similar(<span class="dig">0.90</span>)).<span class="skw">click</span>()
+<span class="skw">click</span>(<img src="freetranslation.png" />)
+<span class="kw">if</span> exists(<img src="freetrans.png" />):
+    concordance()
+<span class="kw">else</span>:
+    <span class="kw">print</span><span class="str">"There is some problem in the script"</span>
+<span class="kw">print</span><span class="str">"Free Translation is working fine"</span>
+<span class="skw">wait</span>(<span class="dig">2</span>)
+refreshone()
+<span class="cmt">#Search in the Line - Literal Translation</span>
+<span class="skw">find</span>(<img src="freetrans.png" />).highlight(<span class="dig">2</span>)
+<span class="skw">find</span>(<img src="freetrasnslon.png" />).<span class="skw">click</span>()
+<span class="skw">click</span>(<img src="literalone.png" />)
+<span class="kw">if</span> exists(<img src="literone.png" />):
+    concordance()
+<span class="kw">else</span>:
+    <span class="kw">print</span><span class="str">"There is some problem in the script"</span>
+<span class="kw">print</span><span class="str">"Literal Translation is working fine"</span>
+<span class="skw">wait</span>(<span class="dig">2</span>)
+refreshone()
+<span class="cmt">#Search in the Line - Note</span>
+<span class="skw">find</span>(<img src="literone.png" />).highlight(<span class="dig">2</span>)
+<span class="skw">find</span>(<img src="litone.png" />).<span class="skw">click</span>()
+<span class="skw">click</span>(<img src="noteone.png" />)
+<span class="kw">if</span> exists(<img src="notetwo.png" />):
+    concordance()
+<span class="kw">else</span>:
+    <span class="kw">print</span><span class="str">"There is some problem in the script"</span>
+<span class="kw">print</span><span class="str">"Note is working fine"</span>
+refreshone()
+<span class="skw">wait</span>(<span class="dig">2</span>)
+<span class="cmt">#Search in the Line - Tagging</span>
+<span class="skw">find</span>(<img src="notetwo.png" />).highlight(<span class="dig">2</span>)
+<span class="skw">find</span>(Pattern(<img src="noteone-1.png" />).similar(<span class="dig">0.90</span>)).<span class="skw">click</span>()
+<span class="skw">click</span>(<img src="taggineone.png" />)
+<span class="kw">if</span> exists(<img src="tagone.png" />):
+   <span class="skw">find</span>(Pattern(<img src="anyhwheonr.png" />).targetOffset(-<span class="dig">15</span>,-<span class="dig">18</span>)).<span class="skw">click</span>()
+   <span class="skw">click</span>(Pattern(<img src="syntaone.png" />).targetOffset(-<span class="dig">13</span>,-<span class="dig">5</span>))
+   <span class="skw">click</span>(<img src="searchone.png" />)
+   <span class="skw">click</span>(Pattern(<img src="refreshone.png" />).targetOffset(-<span class="dig">2</span>,-<span class="dig">1</span>))
+<span class="kw">else</span>:
+    <span class="kw">print</span><span class="str">"There is some problem in the script"</span>
+<span class="kw">print</span><span class="str">"Tagging is working fine"</span>
+<span class="skw">wait</span>(<span class="dig">2</span>)
+<span class="skw">popup</span>(<span class="str">"Search in the line field is working"</span>)
+</pre>
+</body>
+</html>
